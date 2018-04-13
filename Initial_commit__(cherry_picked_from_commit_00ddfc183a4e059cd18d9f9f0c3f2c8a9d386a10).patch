@@ -1,0 +1,189 @@
+Index: feature/src/main/java/com/example/melle/opdracht1/feature/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- feature/src/main/java/com/example/melle/opdracht1/feature/MainActivity.java	(date 1523562231000)
++++ feature/src/main/java/com/example/melle/opdracht1/feature/MainActivity.java	(date 1523632299513)
+@@ -17,11 +17,16 @@
+ 
+     public void checkClicked(View v)
+     {
++        // loading checkbox clicked
+         CheckBox checkbox = (CheckBox) v;
++
++        // is checkbox checked or unchecked
+         boolean checked = checkbox.isChecked();
+ 
+-        switch(v.getId()) {
+-            case R.id.arms:
++        // getting text from checkbox
++        // apply visibility to appropriate image
++        switch(checkbox.getText().toString()) {
++            case "arms":
+ 
+                 ImageView arms = (ImageView) findViewById(R.id.arms);
+                 if (checked)
+@@ -33,7 +38,7 @@
+                     arms.setVisibility(View.INVISIBLE);
+                 }
+                 break;
+-            case R.id.shoes:
++            case "shoes":
+                 ImageView shoes = (ImageView) findViewById(R.id.shoes);
+                 if (checked)
+                 {
+@@ -44,7 +49,7 @@
+                     shoes.setVisibility(View.INVISIBLE);
+                 }
+                 break;
+-            case R.id.glasses:
++            case "glasses":
+                 ImageView glasses = (ImageView) findViewById(R.id.glasses);
+                 if (checked)
+                 {
+@@ -55,7 +60,7 @@
+                     glasses.setVisibility(View.INVISIBLE);
+                 }
+                 break;
+-            case R.id.hat:
++            case "hat":
+                 ImageView hat = (ImageView) findViewById(R.id.hat);
+                 if (checked)
+                 {
+@@ -66,7 +71,7 @@
+                     hat.setVisibility(View.INVISIBLE);
+                 }
+                 break;
+-            case R.id.eyebrows:
++            case "eyebrows":
+                 ImageView eyebrows = (ImageView) findViewById(R.id.eyebrows);
+                 if (checked)
+                 {
+@@ -77,7 +82,7 @@
+                     eyebrows.setVisibility(View.INVISIBLE);
+                 }
+                 break;
+-            case R.id.mouth:
++            case "mouth":
+                 ImageView mouth = (ImageView) findViewById(R.id.mouth);
+                 if (checked)
+                 {
+@@ -88,7 +93,7 @@
+                     mouth.setVisibility(View.INVISIBLE);
+                 }
+                 break;
+-            case R.id.nose:
++            case "nose":
+                 ImageView nose = (ImageView) findViewById(R.id.nose);
+                 if (checked)
+                 {
+@@ -99,7 +104,7 @@
+                     nose.setVisibility(View.INVISIBLE);
+                 }
+                 break;
+-            case R.id.eyes:
++            case "eyes":
+                 ImageView eyes = (ImageView) findViewById(R.id.eyes);
+                 if (checked)
+                 {
+@@ -110,7 +115,7 @@
+                     eyes.setVisibility(View.INVISIBLE);
+                 }
+                 break;
+-            case R.id.ears:
++            case "ears":
+                 ImageView ears = (ImageView) findViewById(R.id.ears);
+                 if (checked)
+                 {
+@@ -121,21 +126,52 @@
+                     ears.setVisibility(View.INVISIBLE);
+                 }
+                 break;
+-            case R.id.mustache:
+-                ImageView moustache = (ImageView) findViewById(R.id.mustache);
++            case "moustache":
++                ImageView mustache = (ImageView) findViewById(R.id.mustache);
+                 if (checked)
+                 {
+-                    moustache.setVisibility(View.VISIBLE);
++                    mustache.setVisibility(View.VISIBLE);
+                 }
+                 else
+                 {
+-                    moustache.setVisibility(View.INVISIBLE);
++                    mustache.setVisibility(View.INVISIBLE);
+                 }
+                 break;
+         }
+     }
+ 
+-}
++    // saving visibility settings
++    public void onSaveInstanceState(Bundle outState) {
++        super.onSaveInstanceState(outState); // always call super
++        ImageView mustache = (ImageView) findViewById(R.id.mustache);
++        outState.putInt("mustache", mustache.getVisibility());
++
++        ImageView ears = (ImageView) findViewById(R.id.ears);
++        outState.putInt("ears", ears.getVisibility());
++
++        ImageView eyes = (ImageView) findViewById(R.id.eyes);
++        outState.putInt("eyes", eyes.getVisibility());
++
++        ImageView nose = (ImageView) findViewById(R.id.nose);
++        outState.putInt("nose", nose.getVisibility());
++
++        ImageView mouth = (ImageView) findViewById(R.id.mouth);
++        outState.putInt("mouth", mouth.getVisibility());
++
++        ImageView eyebrows = (ImageView) findViewById(R.id.eyebrows);
++        outState.putInt("eyebrows", eyebrows.getVisibility());
++
++        ImageView hat = (ImageView) findViewById(R.id.hat);
++        outState.putInt("hat", hat.getVisibility());
++
++        ImageView glasses = (ImageView) findViewById(R.id.glasses);
++        outState.putInt("glasses", glasses.getVisibility());
+ 
++        ImageView shoes = (ImageView) findViewById(R.id.shoes);
++        outState.putInt("shoes", shoes.getVisibility());
+ 
+-}
++        ImageView arms = (ImageView) findViewById(R.id.arms);
++        outState.putInt("arms", arms.getVisibility());
++    }
++
++}
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(date 1523562231000)
++++ .idea/vcs.xml	(date 1523635777517)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+-    <mapping directory="$PROJECT_DIR$/Mr-Potatohead" vcs="" />
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file
+diff --git .idea/caches/build_file_checksums.ser .idea/caches/build_file_checksums.ser
+index 27068c895c24326e527ca200e79398b99778402c..fc8a32c9eaf1163dca63d778975b72ec247fb2ab
+GIT binary patch
+literal 684
+zc${1FmVvdnh`~NNKUXg?FQq6yGexf?KR>5fFEb@IQ7^qHF(oHeub?PDD>b=9F91S2
+zm1gFoxMk*~I%lLNXBU^|7Q2L-Ts|(GuF1r}<i#MFTj`TnT;dMa8(f)}9Fm!vT3nKt
+zTj0aMpIeEdv4nx&Co8cmQNOe#Ge_SyvB0{bfPsNAY5$>wJfOP-L2`N^IX#cW;tZfX
+zEBmd3hs6>uGBYr_F>vMNC#JY1CYR(Fc`|U8WE7<qXXNLkR20}dFn|D0IR}sw0AkJ(
+z27$zaf|w+b)1lrfEn;Abc3SgU{0AFH$O9$@29VVZ0%~WwADYKTZsWhc^=I}H{Z}On
+z;+c6s=jWAR7*NPi$G`^CGbhwNv(~6tu*m*QcI?y(bAa9|PAw_P%u6rEP}^znS-w*4
+zw)6^*h{z2y?cGZl1d|erQ*oGFw0HLW`^~2to02}VZe-$6D`DWluF!j%jt0L-Oh-LO
+zvwC&bZ0`~Vk+jsrlF}kvCR^;h{#&3-W!=Po9QO8X&St<6%E?bo%mKxAL26M+W@<4)
+zF`vruNujqN`@hk7ZebH*?p(s4;cOKXTAW%`9OIjslam?)H9rQCWH1c5BHMGbpJ5Zr
+j%LdLFZ+<w{0ey}~_2*vZReKVa`fajJGk$hfAgKZXdhYEw
+

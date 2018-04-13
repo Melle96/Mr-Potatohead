@@ -17,11 +17,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkClicked(View v)
     {
+        // loading checkbox clicked
         CheckBox checkbox = (CheckBox) v;
+
+        // is checkbox checked or unchecked
         boolean checked = checkbox.isChecked();
 
-        switch(v.getId()) {
-            case R.id.arms:
+        // getting text from checkbox
+        // apply visibility to appropriate image
+        switch(checkbox.getText().toString()) {
+            case "arms":
 
                 ImageView arms = (ImageView) findViewById(R.id.arms);
                 if (checked)
@@ -33,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                     arms.setVisibility(View.INVISIBLE);
                 }
                 break;
-            case R.id.shoes:
+            case "shoes":
                 ImageView shoes = (ImageView) findViewById(R.id.shoes);
                 if (checked)
                 {
@@ -44,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     shoes.setVisibility(View.INVISIBLE);
                 }
                 break;
-            case R.id.glasses:
+            case "glasses":
                 ImageView glasses = (ImageView) findViewById(R.id.glasses);
                 if (checked)
                 {
@@ -55,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     glasses.setVisibility(View.INVISIBLE);
                 }
                 break;
-            case R.id.hat:
+            case "hat":
                 ImageView hat = (ImageView) findViewById(R.id.hat);
                 if (checked)
                 {
@@ -66,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     hat.setVisibility(View.INVISIBLE);
                 }
                 break;
-            case R.id.eyebrows:
+            case "eyebrows":
                 ImageView eyebrows = (ImageView) findViewById(R.id.eyebrows);
                 if (checked)
                 {
@@ -77,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     eyebrows.setVisibility(View.INVISIBLE);
                 }
                 break;
-            case R.id.mouth:
+            case "mouth":
                 ImageView mouth = (ImageView) findViewById(R.id.mouth);
                 if (checked)
                 {
@@ -88,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     mouth.setVisibility(View.INVISIBLE);
                 }
                 break;
-            case R.id.nose:
+            case "nose":
                 ImageView nose = (ImageView) findViewById(R.id.nose);
                 if (checked)
                 {
@@ -99,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     nose.setVisibility(View.INVISIBLE);
                 }
                 break;
-            case R.id.eyes:
+            case "eyes":
                 ImageView eyes = (ImageView) findViewById(R.id.eyes);
                 if (checked)
                 {
@@ -110,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                     eyes.setVisibility(View.INVISIBLE);
                 }
                 break;
-            case R.id.ears:
+            case "ears":
                 ImageView ears = (ImageView) findViewById(R.id.ears);
                 if (checked)
                 {
@@ -121,21 +126,52 @@ public class MainActivity extends AppCompatActivity {
                     ears.setVisibility(View.INVISIBLE);
                 }
                 break;
-            case R.id.mustache:
-                ImageView moustache = (ImageView) findViewById(R.id.mustache);
+            case "moustache":
+                ImageView mustache = (ImageView) findViewById(R.id.mustache);
                 if (checked)
                 {
-                    moustache.setVisibility(View.VISIBLE);
+                    mustache.setVisibility(View.VISIBLE);
                 }
                 else
                 {
-                    moustache.setVisibility(View.INVISIBLE);
+                    mustache.setVisibility(View.INVISIBLE);
                 }
                 break;
         }
     }
 
-}
+    // saving visibility settings
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState); // always call super
+        ImageView mustache = (ImageView) findViewById(R.id.mustache);
+        outState.putInt("mustache", mustache.getVisibility());
 
+        ImageView ears = (ImageView) findViewById(R.id.ears);
+        outState.putInt("ears", ears.getVisibility());
+
+        ImageView eyes = (ImageView) findViewById(R.id.eyes);
+        outState.putInt("eyes", eyes.getVisibility());
+
+        ImageView nose = (ImageView) findViewById(R.id.nose);
+        outState.putInt("nose", nose.getVisibility());
+
+        ImageView mouth = (ImageView) findViewById(R.id.mouth);
+        outState.putInt("mouth", mouth.getVisibility());
+
+        ImageView eyebrows = (ImageView) findViewById(R.id.eyebrows);
+        outState.putInt("eyebrows", eyebrows.getVisibility());
+
+        ImageView hat = (ImageView) findViewById(R.id.hat);
+        outState.putInt("hat", hat.getVisibility());
+
+        ImageView glasses = (ImageView) findViewById(R.id.glasses);
+        outState.putInt("glasses", glasses.getVisibility());
+
+        ImageView shoes = (ImageView) findViewById(R.id.shoes);
+        outState.putInt("shoes", shoes.getVisibility());
+
+        ImageView arms = (ImageView) findViewById(R.id.arms);
+        outState.putInt("arms", arms.getVisibility());
+    }
 
 }
